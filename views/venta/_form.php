@@ -8,14 +8,22 @@ use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
 /** @var app\models\Venta $model */
+/** @var app\models\Producto[] $productos */
 /** @var yii\widgets\ActiveForm $form */
 
 $data = [];
-$dbquery = Producto::find()->select('id,nombre')->asArray()->all();
+// $dbquery = Producto::find()->select('id,nombre')->asArray()->all();
 
-foreach ($dbquery as $row){
-    $data[$row["id"]] = $row["nombre"];
+// foreach ($dbquery as $row){
+//     $data[$row["id"]] = $row["nombre"];
+// }
+
+foreach($productos as $producto){
+    $data[$producto->id] = $producto->nombre . ' - ' . $producto->stock->cantidad . ' unidades - (Precio sugerido) ' . $producto->precio. ' Bs.';
 }
+
+
+
 ?>
 
 <div class="venta-form">
@@ -36,11 +44,15 @@ foreach ($dbquery as $row){
     <?= $form->field($model, 'precio')->textInput() ?>
 
     <?= $form->field($model, 'fecha_venta')->widget(DateTimePicker::classname(), [
-        'options' => ['placeholder' => 'Enter event time ...'],
+        // 'options' => ['placeholder' => 'Enter event time ...'],
+        // 'type' => DateTimePicker::TYPE_INLINE,
+        'value' => date('Y-m-d H:i:s'),
         'pluginOptions' => [
+            // 'format' => 'dd-M-yyyy hh:ii',
+            'todayHighlight' => true,
             'todayBtn' => true,
             'autoclose' => true
-        ]
+    ]
     ]);
     ?>
 

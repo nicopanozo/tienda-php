@@ -68,6 +68,7 @@ class VentaController extends Controller
     public function actionCreate()
     {
         $model = new Venta();
+        $productos = \app\models\Producto::find()->all();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
@@ -78,6 +79,7 @@ class VentaController extends Controller
                     $model->addError('cantidad', 'No hay suficiente stock para realizar la venta');
                     return $this->render('create', [
                         'model' => $model,
+                        'productos' => $productos,
                     ]);
                 } else {
                     $stock->cantidad = $stock->cantidad - $model->cantidad;
@@ -89,6 +91,8 @@ class VentaController extends Controller
                         $model->addError('cantidad', 'No se pudo actualizar el stock');
                         return $this->render('create', [
                             'model' => $model,
+                            'productos' => $productos,
+
                         ]);
                     }
 
@@ -96,10 +100,13 @@ class VentaController extends Controller
             }
         } else {
             $model->loadDefaultValues();
+            $model->fecha_venta = date('Y-m-d H:i:s');
+            $model->cantidad = 1;
         }
 
         return $this->render('create', [
             'model' => $model,
+            'productos' => $productos,
         ]);
     }
 
