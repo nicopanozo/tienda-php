@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Venta;
 use app\models\VentaSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -27,6 +28,19 @@ class VentaController extends Controller
                         'delete' => ['POST'],
                     ],
                 ],
+                
+            ],
+            [
+                'access' => [
+                'class' => AccessControl::class,
+                'only' => ['index', 'view', 'create', 'update', 'delete', ], // Especifica las acciones que deseas restringir (o quita esta línea para aplicar a todas)
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'], // '@' significa que solo usuarios autenticados tienen acceso
+                    ],
+                ],
+            ],
             ]
         );
     }
@@ -120,6 +134,8 @@ class VentaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $productos = \app\models\Producto::find()->all();
+
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -127,6 +143,8 @@ class VentaController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'productos' => $productos,
+
         ]);
     }
 
