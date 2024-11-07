@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Producto;
 use app\models\ProductoSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -27,6 +28,18 @@ class ProductoController extends Controller
                         'delete' => ['POST'],
                     ],
                 ],
+            ],
+            [
+                'access' => [
+                'class' => AccessControl::class,
+                'only' => ['index', 'view', 'create', 'update', 'delete', ], // Especifica las acciones que deseas restringir (o quita esta línea para aplicar a todas)
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'], // '@' significa que solo usuarios autenticados tienen acceso
+                    ],
+                ],
+            ],
             ]
         );
     }
