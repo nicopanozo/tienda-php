@@ -1,10 +1,12 @@
 <?php
 
+use app\models\Producto;
 use app\models\Venta;
+use kartik\grid\ActionColumn;
+use kartik\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\grid\ActionColumn;
-use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 
 /** @var yii\web\View $this */
 /** @var app\models\VentaSearch $searchModel */
@@ -30,11 +32,18 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            [                     
-                'label' => 'Producto',
-                'value' => function($model) { 
-                    return $model->producto->nombre;
-                }
+            [
+                'value' => 'producto.nombre',
+                'attribute' => 'producto_id',
+                'filter' => ArrayHelper::map(Producto::find()->asArray()->all(), 'id', 'nombre'),
+                'filterType' => GridView::FILTER_SELECT2,
+                'filterWidgetOptions' => [
+                    'options' => ['prompt' => ''],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                        'width'=>'300px'
+                    ],
+                ],
             ],
             'cantidad',
             'precio',
