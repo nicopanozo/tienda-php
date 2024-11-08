@@ -50,12 +50,12 @@ define("MIN_CANT_ITEMS_STOCK", 10);
 
             [
                 'class' => ActionColumn::className(),
-                'template' => '{view} {update}', // Aquí solo incluimos ver y actualizar
+                'template' => '{ver} {actualizar}', // Aquí solo incluimos ver y actualizar
                 'buttons' => [
-                    'view' => function ($url, $model, $key) {
+                    'ver' => function ($url, $model, $key) {
                         return Html::a('<span class="fa fa-eye"></span>', $url);
                     },
-                    'update' => function ($url, $model, $key) {
+                    'actualizar' => function ($url, $model, $key) {
                         return Html::a('<span class="fa fa-edit"></span>', $url);
                     },
                     // Puedes agregar más botones personalizados aquí

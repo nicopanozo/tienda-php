@@ -26,14 +26,14 @@ class ProductoController extends Controller
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
-                        'delete' => ['POST'],
+                        'eliminar' => ['POST'],
                     ],
                 ],
             ],
             [
                 'access' => [
                 'class' => AccessControl::class,
-                'only' => ['index', 'view', 'create', 'update', 'delete', ], // Especifica las acciones que deseas restringir (o quita esta línea para aplicar a todas)
+                'only' => ['listar', 'ver', 'crear', 'actualizar', 'eliminar', ], // Especifica las acciones que deseas restringir (o quita esta línea para aplicar a todas)
                 'rules' => [
                     [
                         'allow' => true,
@@ -50,7 +50,7 @@ class ProductoController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionListar()
     {
         $searchModel = new ProductoSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
@@ -67,7 +67,7 @@ class ProductoController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionVer($id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -79,7 +79,7 @@ class ProductoController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCrear()
     {
         $model = new Producto();
 
@@ -93,7 +93,7 @@ class ProductoController extends Controller
                 $stock->producto_id = $model->id;
                 $stock->cantidad = 0;
                 if($stock->save()){
-                    return $this->redirect(['stock/update', 'id' => $stock->id]);
+                    return $this->redirect(['stock/actualizar', 'id' => $stock->id]);
 
                 } else {
                     ////mensaje de errro
@@ -116,12 +116,12 @@ class ProductoController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionActualizar($id)
     {
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['ver', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -136,14 +136,14 @@ class ProductoController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionEliminar($id)
     {
 
         $model = $this->findModel($id);
 
         $model->eliminado = date("Y-m-d H:i:s");
         if($model->save()){
-            return $this->redirect(['index']);
+            return $this->redirect(['listar']);
         }
 
     }

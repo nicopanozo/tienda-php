@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Venta', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Venta', ['crear'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -50,9 +50,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'fecha_venta',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Venta $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                'template' => '{ver} {actualizar} {eliminar}', // Aquí solo incluimos ver y actualizar
+                'buttons' => [
+                    'ver' => function ($url, $model, $key) {
+                        return Html::a('<span class="fa fa-eye"></span>', $url);
+                    },
+                    'actualizar' => function ($url, $model, $key) {
+                        return Html::a('<span class="fa fa-edit"></span>', $url);
+                    },
+                    'eliminar' => function ($url, $model, $key) {
+                        return Html::a('<span class="fa fa-trash-alt"></span>', $url);
+                    },
+                    // Puedes agregar más botones personalizados aquí
+                ],
             ],
         ],
     ]); ?>

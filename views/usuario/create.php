@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /** @var app\models\Usuario $model */
 
 $this->title = 'Create Usuario';
-$this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['listar']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="usuario-create">

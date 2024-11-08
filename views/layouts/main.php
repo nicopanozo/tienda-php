@@ -40,16 +40,16 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'Vender', 'url' => ['/venta/index']],
-            ['label' => 'Productos', 'url' => ['/producto/index']],
-            ['label' => 'Stock', 'url' => ['/stock/index']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'Vender', 'url' => ['/venta/listar']],
+            ['label' => 'Productos', 'url' => ['/producto/listar']],
+            ['label' => 'Stock', 'url' => ['/stock/listar']],
+            ['label' => 'Usuarios', 'url' => ['/usuario/listar']],
             Yii::$app->user->isGuest
-                ? ['label' => 'Login', 'url' => ['/site/login']]
+                ? ['label' => 'Ingresar', 'url' => ['/site/login']]
                 : '<li class="nav-item">'
                     . Html::beginForm(['/site/logout'])
                     . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->usuario . ')',
+                        'Salir (' . Yii::$app->user->identity->usuario . ')',
                         ['class' => 'nav-link btn btn-link logout']
                     )
                     . Html::endForm()

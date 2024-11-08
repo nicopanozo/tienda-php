@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /** @var app\models\Venta $model */
 /** @var app\models\Producto[] $productos */
 
-$this->title = 'Create Venta';
-$this->params['breadcrumbs'][] = ['label' => 'Ventas', 'url' => ['index']];
+$this->title = 'Crear Venta';
+$this->params['breadcrumbs'][] = ['label' => 'Ventas', 'url' => ['listar']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="venta-create">

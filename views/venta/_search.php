@@ -20,7 +20,7 @@ foreach ($dbquery as $row){
 <div class="venta-search">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['index'],
+        'action' => ['listar'],
         'method' => 'get',
     ]); ?>
 

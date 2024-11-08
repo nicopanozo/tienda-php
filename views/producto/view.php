@@ -7,20 +7,20 @@ use yii\widgets\DetailView;
 /** @var app\models\Producto $model */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Productos', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Productos', 'url' => ['listar']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="producto-view">
+<div class="producto-ver">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Actualizar', ['actualizar', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Eliminar', ['eliminar', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Segur@ que deseas eliminar este elemento?',
                 'method' => 'post',
             ],
         ]) ?>

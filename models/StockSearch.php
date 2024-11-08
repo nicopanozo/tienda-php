@@ -39,7 +39,9 @@ class StockSearch extends Stock
      */
     public function search($params)
     {
-        $query = Stock::find();
+        $query = Stock::find()
+        ->joinWith('producto')
+        ->where(['producto.eliminado' => null]);
 
         // add conditions that should always apply here
 
@@ -56,11 +58,10 @@ class StockSearch extends Stock
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'producto_id' => $this->producto_id,
-            'cantidad' => $this->cantidad,
-        ]);
+        $query->andFilterWhere(['like', 'id', $this->id])
+            ->andFilterWhere(['like', 'producto_id', $this->producto_id])
+            ->andFilterWhere(['like', 'cantidad', $this->cantidad]);
+
 
         return $dataProvider;
     }

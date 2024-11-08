@@ -32,7 +32,7 @@ class UsuarioController extends Controller
             [
                 'access' => [
                 'class' => AccessControl::class,
-                'only' => ['index', 'view', 'crear', 'update', 'eliminar', ], // Especifica las acciones que deseas restringir (o quita esta línea para aplicar a todas)
+                'only' => ['listar', 'ver', 'crear', 'actualizar', 'eliminar', ], // Especifica las acciones que deseas restringir (o quita esta línea para aplicar a todas)
                 'rules' => [
                     [
                         'allow' => true,
@@ -49,7 +49,7 @@ class UsuarioController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionListar()
     {
         $searchModel = new UsuarioSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
@@ -66,7 +66,7 @@ class UsuarioController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionVer($id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -86,7 +86,7 @@ class UsuarioController extends Controller
             if ($model->load($this->request->post())) {
                 // $model->password = md5($model->password);
                 if($model->save()){
-                    return $this->redirect(['view', 'id' => $model->id]);
+                    return $this->redirect(['ver', 'id' => $model->id]);
                 }
             }
         } else {
@@ -105,14 +105,14 @@ class UsuarioController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionActualizar($id)
     {
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post())) {
             // $model->password = md5($model->password);
             if($model->save()){
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['ver', 'id' => $model->id]);
             }
         }
 
@@ -137,7 +137,7 @@ class UsuarioController extends Controller
         $model->eliminado = date("Y-m-d H:i:s");
         if($model->save()){
             Yii::$app->session->setFlash('success', 'Usuario marcado como eliminado.');
-            return $this->redirect(['index']);
+            return $this->redirect(['listar']);
         } else{
             Yii::$app->session->setFlash('error', 'Hubo un error al marcar como eliminado.');
             Yii::warning("Error al eliminar el usuario: " . json_encode($model->getErrors()));

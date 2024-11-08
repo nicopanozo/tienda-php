@@ -31,7 +31,7 @@ class StockController extends Controller
             [
                 'access' => [
                 'class' => AccessControl::class,
-                'only' => ['index', 'view', 'update', ], // Especifica las acciones que deseas restringir (o quita esta línea para aplicar a todas)
+                'only' => ['listar', 'ver', 'actualizar', ], // Especifica las acciones que deseas restringir (o quita esta línea para aplicar a todas)
                 'rules' => [
                     [
                         'allow' => true,
@@ -48,7 +48,7 @@ class StockController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionListar()
     {
         $searchModel = new StockSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
@@ -65,7 +65,7 @@ class StockController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionVer($id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -80,12 +80,12 @@ class StockController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionActualizar($id)
     {
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['listar']);
         }
 
         return $this->render('update', [

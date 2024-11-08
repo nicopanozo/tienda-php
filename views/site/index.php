@@ -16,19 +16,19 @@ $this->title = 'Pass Clothing - Inventario';
 
         <div class="row">
             <div class="col-lg-4 mb-3">
-                <h2>Inventario</h2>
-                <p>Consulta y administra todas las prendas disponibles en la tienda. Actualiza cantidades, precios y detalles de cada producto fácilmente.</p>
-                <p><a class="btn btn-outline-secondary" href="/stock">Ver Inventario &raquo;</a></p>
+                <h2>Ventas</h2>
+                <p>Consulta y administra todas ventas realizadas en la tienda</p>
+                <p><a class="btn btn-outline-secondary" href="/venta/ver">Ver Inventario &raquo;</a></p>
             </div>
             <div class="col-lg-4 mb-3">
                 <h2>Nuevos Productos</h2>
                 <p>Añade nuevas prendas al catálogo de Pass Clothing. Mantén tu inventario al día con las últimas tendencias y productos.</p>
-                <p><a class="btn btn-outline-secondary" href="/producto/create">Agregar Producto &raquo;</a></p>
+                <p><a class="btn btn-outline-secondary" href="/producto/crear">Agregar Producto &raquo;</a></p>
             </div>
             <div class="col-lg-4 mb-3">
-                <h2>Ventas</h2>
-                <p>Accede a los datos de Ventas para mejorar la toma de decisiones y optimizar el stock.</p>
-                <p><a class="btn btn-outline-secondary" href="/venta/index">Ver Ventas &raquo;</a></p>
+                <h2>Crea un nuevo usuario</h2>
+                <p>Visualiza la tabla de usuarios, puedes crear, actualizar o eliminarlos</p>
+                <p><a class="btn btn-outline-secondary" href="/usuario/listar">Ver Usuarios &raquo;</a></p>
             </div>
         </div>
 
@@ -36,7 +36,7 @@ $this->title = 'Pass Clothing - Inventario';
             <div class="col-lg-12 text-center">
                 <h3>¿Necesitas ayuda?</h3>
                 <p>Si tienes alguna pregunta sobre cómo usar la plataforma, contáctanos para recibir asistencia personalizada.</p>
-                <p><a class="btn btn-outline-primary" href="/site/contact">Contactar Soporte &raquo;</a></p>
+                <p><a class="btn btn-outline-primary" href="/">Contactar Soporte &raquo;</a></p>
             </div>
         </div>
 
