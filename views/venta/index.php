@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Producto;
+use app\models\Usuario;
 use app\models\Venta;
 use kartik\grid\ActionColumn;
 use kartik\grid\GridView;
@@ -36,6 +37,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => 'producto.nombre',
                 'attribute' => 'producto_id',
                 'filter' => ArrayHelper::map(Producto::find()->asArray()->all(), 'id', 'nombre'),
+                'filterType' => GridView::FILTER_SELECT2,
+                'filterWidgetOptions' => [
+                    'options' => ['prompt' => ''],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                        'width'=>'300px'
+                    ],
+                ],
+            ],
+            [
+                'value' => 'usuario.nombre',
+                'attribute' => 'usuario_id',
+                'filter' => ArrayHelper::map(Usuario::find()->asArray()->all(), 'id', 'nombre'),
                 'filterType' => GridView::FILTER_SELECT2,
                 'filterWidgetOptions' => [
                     'options' => ['prompt' => ''],

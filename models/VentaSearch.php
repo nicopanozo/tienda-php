@@ -17,7 +17,7 @@ class VentaSearch extends Venta
     public function rules()
     {
         return [
-            [['id', 'producto_id', 'cantidad'], 'integer'],
+            [['id', 'producto_id', 'cantidad', 'usuario_id'], 'integer'],
             [['precio'], 'number'],
             [['fecha_venta'], 'safe'],
         ];
@@ -61,6 +61,7 @@ class VentaSearch extends Venta
         $query->andFilterWhere([
             'id' => $this->id,
             'producto_id' => $this->producto_id,
+            'usuario_id' => $this->usuario_id,
             'cantidad' => $this->cantidad,
             'precio' => $this->precio,
             'fecha_venta' => $this->fecha_venta,

@@ -88,6 +88,9 @@ class VentaController extends Controller
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
 
+
+                $model->usuario_id = Yii::$app->user->id;   
+
                 $stock = $model->producto->stock;
 
                 if($model->cantidad > $stock->cantidad){
