@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Usuario;
 use app\models\UsuarioSearch;
+use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -25,14 +26,13 @@ class UsuarioController extends Controller
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
-                        'delete' => ['POST'],
                     ],
                 ],
             ],
             [
                 'access' => [
                 'class' => AccessControl::class,
-                'only' => ['index', 'view', 'create', 'update', 'delete', ], // Especifica las acciones que deseas restringir (o quita esta línea para aplicar a todas)
+                'only' => ['index', 'view', 'crear', 'update', 'eliminar', ], // Especifica las acciones que deseas restringir (o quita esta línea para aplicar a todas)
                 'rules' => [
                     [
                         'allow' => true,
@@ -78,7 +78,7 @@ class UsuarioController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCrear()
     {
         $model = new Usuario();
 
@@ -128,11 +128,20 @@ class UsuarioController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionEliminar($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
 
-        return $this->redirect(['index']);
+        $model->scenario = Usuario::SCENARIO_UPDATE_DELETED;
+
+        $model->eliminado = date("Y-m-d H:i:s");
+        if($model->save()){
+            Yii::$app->session->setFlash('success', 'Usuario marcado como eliminado.');
+            return $this->redirect(['index']);
+        } else{
+            Yii::$app->session->setFlash('error', 'Hubo un error al marcar como eliminado.');
+            Yii::warning("Error al eliminar el usuario: " . json_encode($model->getErrors()));
+        }
     }
 
     /**

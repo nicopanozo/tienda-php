@@ -40,7 +40,7 @@ class UsuarioSearch extends Usuario
      */
     public function search($params)
     {
-        $query = Usuario::find();
+        $query = Usuario::find()->where(['eliminado' => null]);
 
         // add conditions that should always apply here
 

@@ -20,6 +20,17 @@ use yii\web\IdentityInterface;
  */
 class Usuario extends \yii\db\ActiveRecord implements IdentityInterface
 {
+    const SCENARIO_UPDATE_DELETED = 'updateDeleted';
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        
+        // Definir el nuevo escenario `updateDeleted` con solo el campo `deleted`
+        $scenarios[self::SCENARIO_UPDATE_DELETED] = ['eliminado'];
+        
+        return $scenarios;
+    }
     /**
      * {@inheritdoc}
      */

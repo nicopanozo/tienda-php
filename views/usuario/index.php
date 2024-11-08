@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Usuario', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Usuario', ['crear'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -35,9 +35,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'password',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Usuario $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                'template' => '{view} {update} {eliminar}', // Aquí solo incluimos ver y actualizar
+                'buttons' => [
+                    'view' => function ($url, $model, $key) {
+                        return Html::a('<span class="fa fa-eye"></span>', $url);
+                    },
+                    'update' => function ($url, $model, $key) {
+                        return Html::a('<span class="fa fa-edit"></span>', $url);
+                    },
+                    'eliminar' => function ($url, $model, $key) {
+                        return Html::a('<span class="fa fa-trash-alt"></span>', $url);
+                    },
+                    // Puedes agregar más botones personalizados aquí
+                ],
             ],
         ],
     ]); ?>
