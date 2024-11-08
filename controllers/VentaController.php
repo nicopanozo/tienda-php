@@ -99,7 +99,7 @@ class VentaController extends Controller
                     $stock->cantidad = $stock->cantidad - $model->cantidad;
                     if($stock->save()){
                         if ($model->save()) {
-                            return $this->redirect(['view', 'id' => $model->id]);
+                            return $this->redirect(['index']);
                         }
                     } else {
                         $model->addError('cantidad', 'No se pudo actualizar el stock');

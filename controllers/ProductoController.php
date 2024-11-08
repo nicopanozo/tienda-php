@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Producto;
 use app\models\ProductoSearch;
+use app\models\Stock;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -84,7 +85,20 @@ class ProductoController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+
+                ///// hayq ue madnar al stock del producto seleccionado
+
+                //// crear un stock en 0
+                $stock = new Stock();
+                $stock->producto_id = $model->id;
+                $stock->cantidad = 0;
+                if($stock->save()){
+                    return $this->redirect(['stock/update', 'id' => $stock->id]);
+
+                } else {
+                    ////mensaje de errro
+                }
+
             }
         } else {
             $model->loadDefaultValues();

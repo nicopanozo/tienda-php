@@ -83,7 +83,7 @@ class Usuario extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             [['usuario', 'nombre', 'password'], 'string', 'max' => 100],
-            [['usuario'], 'unique'],
+            [['usuario'], 'unique', 'message' => 'Este usuario ya está en uso.'],
             [
                 'password',
                 'match',

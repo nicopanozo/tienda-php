@@ -25,14 +25,13 @@ class StockController extends Controller
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
-                        'delete' => ['POST'],
                     ],
                 ],
             ],
             [
                 'access' => [
                 'class' => AccessControl::class,
-                'only' => ['index', 'view', 'create', 'update', 'delete', ], // Especifica las acciones que deseas restringir (o quita esta línea para aplicar a todas)
+                'only' => ['index', 'view', 'update', ], // Especifica las acciones que deseas restringir (o quita esta línea para aplicar a todas)
                 'rules' => [
                     [
                         'allow' => true,
@@ -73,27 +72,6 @@ class StockController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Stock model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
-    public function actionCreate()
-    {
-        $model = new Stock();
-
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
-        } else {
-            $model->loadDefaultValues();
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
 
     /**
      * Updates an existing Stock model.
@@ -107,26 +85,12 @@ class StockController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
             'model' => $model,
         ]);
-    }
-
-    /**
-     * Deletes an existing Stock model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
     }
 
     /**

@@ -12,14 +12,13 @@ use yii\grid\GridView;
 
 $this->title = 'Stocks';
 $this->params['breadcrumbs'][] = $this->title;
+
+define("MIN_CANT_ITEMS_STOCK", 10);
+
 ?>
 <div class="stock-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Create Stock', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -39,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [                     
                 'label' => 'Cantidad',
                 'value' => function($model) { 
-                    if($model->cantidad < 10) {
+                    if($model->cantidad < MIN_CANT_ITEMS_STOCK) {
                         return '<div class="out-stock">' . $model->cantidad . '<br><span class="alerta"><B>ALERTA:</B> Stock bajo</span></div>';
                     } else {
                         return $model->cantidad;
@@ -51,9 +50,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Stock $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                'template' => '{view} {update}', // Aquí solo incluimos ver y actualizar
+                'buttons' => [
+                    'view' => function ($url, $model, $key) {
+                        return Html::a('<span class="fa fa-eye"></span>', $url);
+                    },
+                    'update' => function ($url, $model, $key) {
+                        return Html::a('<span class="fa fa-edit"></span>', $url);
+                    },
+                    // Puedes agregar más botones personalizados aquí
+                ],
             ],
         ],
     ]); ?>

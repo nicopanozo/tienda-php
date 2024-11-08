@@ -29,7 +29,8 @@ class Stock extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['producto_id', 'cantidad'], 'integer'],
+            [['producto_id', 'cantidad'], 'integer', 'message' => 'El campo debe ser un número entero'],
+            [['producto_id', 'cantidad'], 'required', 'message' => 'Campo requerido'],
             [['producto_id'], 'unique'],
             [['producto_id'], 'exist', 'skipOnError' => true, 'targetClass' => Producto::class, 'targetAttribute' => ['producto_id' => 'id']],
         ];

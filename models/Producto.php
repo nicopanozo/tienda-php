@@ -34,9 +34,10 @@ class Producto extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['precio'], 'number'],
+            [['precio'], 'number', 'message' => 'El precio debe ser un número'],
             [['nombre', 'descripcion', 'color', 'categoria'], 'string', 'max' => 100],
-            [['talla'], 'string', 'max' => 5],
+            [['talla'], 'string', 'max' => 5, 'message' => 'La talla debe ser XS, S, M, L, XL o XXL'],
+            [['nombre', 'precio', 'talla', 'color', 'categoria'], 'required', 'message' => 'Campo requerido' ],
         ];
     }
 
