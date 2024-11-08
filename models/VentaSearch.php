@@ -41,7 +41,7 @@ class VentaSearch extends Venta
      */
     public function search($params)
     {
-        $query = Venta::find();
+        $query = Venta::find()->where(['eliminado' => null]);
 
         // add conditions that should always apply here
 

@@ -140,7 +140,6 @@ class UsuarioController extends Controller
             return $this->redirect(['listar']);
         } else{
             Yii::$app->session->setFlash('error', 'Hubo un error al marcar como eliminado.');
-            Yii::warning("Error al eliminar el usuario: " . json_encode($model->getErrors()));
         }
     }
 

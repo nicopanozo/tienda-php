@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Venta;
 use app\models\VentaSearch;
+use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -25,7 +26,7 @@ class VentaController extends Controller
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
-                        'eliminar' => ['POST'],
+                        // 'eliminar' => ['POST'],
                     ],
                 ],
                 
@@ -157,7 +158,15 @@ class VentaController extends Controller
      */
     public function actionEliminar($id)
     {
-        $this->findModel($id)->eliminar();
+        $model = $this->findModel($id);
+        $model->eliminado = date("Y-m-d H:i:s");
+
+        if($model->save()){
+            Yii::$app->session->setFlash('success', 'Venta liminado.');
+            return $this->redirect(['listar']);
+        } else{
+            Yii::$app->session->setFlash('error', 'Hubo un error al marcar como eliminado.');
+        }
 
         return $this->redirect(['listar']);
     }
