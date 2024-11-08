@@ -16,7 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1>Venta # <?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Actualizar', ['actualizar', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Eliminar', ['eliminar', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -33,6 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
             [                      // the owner name of the model
                 'label' => 'Producto',
                 'value' => $model->producto->nombre,
+            ],
+            [                      // the owner name of the model
+                'label' => 'Vendedor',
+                'value' => $model->usuario ? $model->usuario->nombre : "- Vendedor no asignado -",
             ],
             'cantidad',
             'precio',

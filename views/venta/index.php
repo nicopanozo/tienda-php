@@ -69,9 +69,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     'ver' => function ($url, $model, $key) {
                         return Html::a('<span class="fa fa-eye"></span>', $url);
                     },
-                    'actualizar' => function ($url, $model, $key) {
-                        return Html::a('<span class="fa fa-edit"></span>', $url);
-                    },
+                    // 'actualizar' => function ($url, $model, $key) {
+                    //     return Html::a('<span class="fa fa-edit"></span>', $url);
+                    // },
                     'eliminar' => function ($url, $model, $key) {
                         return Html::a('<span class="fa fa-trash-alt"></span>', $url);
                     },

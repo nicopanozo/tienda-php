@@ -164,11 +164,16 @@ class VentaController extends Controller
         $model = $this->findModel($id);
         $model->eliminado = date("Y-m-d H:i:s");
 
-        if($model->save()){
-            Yii::$app->session->setFlash('success', 'Venta liminado.');
-            return $this->redirect(['listar']);
-        } else{
-            Yii::$app->session->setFlash('error', 'Hubo un error al marcar como eliminado.');
+        $stock = $model->producto->stock;
+        $stock->cantidad = $stock->cantidad + $model->cantidad;
+
+        if($stock->save()){
+            if($model->save()){
+                Yii::$app->session->setFlash('success', 'Venta liminado.');
+                return $this->redirect(['listar']);
+            } else{
+                Yii::$app->session->setFlash('error', 'Hubo un error al marcar como eliminado.');
+            }
         }
 
         return $this->redirect(['listar']);
