@@ -138,9 +138,14 @@ class ProductoController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        $model = $this->findModel($id);
+
+        $model->eliminado = date("Y-m-d H:i:s");
+        if($model->save()){
+            return $this->redirect(['index']);
+        }
+
     }
 
     /**

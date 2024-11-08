@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 
 
 $data = [];
-$dbquery = Producto::find()->select('id,nombre')->asArray()->all();
+$dbquery = Producto::find()->select('id,nombre')->where(['eliminado'=>null])->asArray()->all();
 
 foreach ($dbquery as $row){
     $data[$row["id"]] = $row["nombre"];

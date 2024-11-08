@@ -14,6 +14,7 @@ use yii\web\IdentityInterface;
  * @property string|null $password
  * @property string|null $auth_key
  * @property string|null $access_token
+ * @property string|null $eliminado
  *
  * @property Venta[] $ventas
  */

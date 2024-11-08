@@ -41,7 +41,7 @@ class ProductoSearch extends Producto
      */
     public function search($params)
     {
-        $query = Producto::find();
+        $query = Producto::find()->where(['eliminado' => null]);
 
         // add conditions that should always apply here
 
