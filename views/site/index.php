@@ -9,7 +9,7 @@ $this->title = 'Pass Clothing - Inventario';
     <div class="jumbotron text-center bg-transparent mt-5 mb-5">
         <h1 class="display-4">¡Bienvenido a Pass Clothing!</h1>
         <p class="lead">Gestiona el inventario de tu tienda de ropa de forma rápida y eficiente.</p>
-        <p><a class="btn btn-lg btn-success" href="/stock">Accede al Inventario</a></p>
+        <p><a class="btn btn-lg btn-success" href="/stock/listar">Accede al Inventario</a></p>
     </div>
 
     <div class="body-content">
@@ -18,7 +18,7 @@ $this->title = 'Pass Clothing - Inventario';
             <div class="col-lg-4 mb-3">
                 <h2>Ventas</h2>
                 <p>Consulta y administra todas ventas realizadas en la tienda</p>
-                <p><a class="btn btn-outline-secondary" href="/venta/ver">Ver Inventario &raquo;</a></p>
+                <p><a class="btn btn-outline-secondary" href="/venta/listar">Ver Inventario &raquo;</a></p>
             </div>
             <div class="col-lg-4 mb-3">
                 <h2>Nuevos Productos</h2>
