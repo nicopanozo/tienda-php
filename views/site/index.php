@@ -2,12 +2,12 @@
 
 /** @var yii\web\View $this */
 
-$this->title = 'Pass Clothing - Inventario';
+$this->title = 'Nico PHP Store';
 ?>
 <div class="site-index">
 
     <div class="jumbotron text-center bg-transparent mt-5 mb-5">
-        <h1 class="display-4">¡Bienvenido a Pass Clothing!</h1>
+        <h1 class="display-4">¡Bienvenido a Nico's Clothing Store!</h1>
         <p class="lead">Gestiona el inventario de tu tienda de ropa de forma rápida y eficiente.</p>
         <p><a class="btn btn-lg btn-success" href="/stock/listar">Accede al Inventario</a></p>
     </div>
@@ -22,7 +22,7 @@ $this->title = 'Pass Clothing - Inventario';
             </div>
             <div class="col-lg-4 mb-3">
                 <h2>Nuevos Productos</h2>
-                <p>Añade nuevas prendas al catálogo de Pass Clothing. Mantén tu inventario al día con las últimas tendencias y productos.</p>
+                <p>Añade nuevas prendas al catálogo de Nico's Clothing Store. Mantén tu inventario al día con las últimas tendencias y productos.</p>
                 <p><a class="btn btn-outline-secondary" href="/producto/crear">Agregar Producto &raquo;</a></p>
             </div>
             <div class="col-lg-4 mb-3">
